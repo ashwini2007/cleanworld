@@ -4,13 +4,14 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
+var bin,binImg;
 var ground;
 var garbage;
 var dustbin;
 var part1,part2,part3;
 function preload()
 {
-	
+	binImg = loadImage("dustbin.png");
 }
 
 function setup() {
@@ -19,6 +20,10 @@ function setup() {
 
 	engine = Engine.create();
 	world = engine.world;
+
+	bin = createSprite(790,380,100,60);
+	bin.addImage(binImg);
+	bin.scale = 0.2;
 
 	ground = new Ground(500,480,1000,20);
 	garbage = new Paper(300,450,30,30);
@@ -41,10 +46,8 @@ function draw() {
   background(0);
   ground.display();
   garbage.display();
-  part1.display();
-  part2.display();
-  part3.display();
   keypressed();
+  drawSprites();
 }
 
 function keypressed(){
